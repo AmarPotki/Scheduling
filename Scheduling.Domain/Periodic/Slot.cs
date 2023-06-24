@@ -2,13 +2,13 @@
 
 public class Slot
 {
-    public Slot(DateOnly date, TimeRage rangeOfSlot)
+    public Slot(DateOnly date, TimeRange rangeOfSlot)
     {
         RangeOfSlot = rangeOfSlot;
         Date = date;
     }
 
     public DateOnly Date { get; private set; }
-    public TimeRage RangeOfSlot { get; private set; }
+    public TimeRange RangeOfSlot { get; private set; }
 
 }

@@ -1,5 +1,7 @@
-﻿namespace Scheduling.Domain;
+﻿using Framework.Domain;
 
-internal class Location
+namespace Scheduling.Domain;
+
+public class Location  :Entity<long>
 {
 }

@@ -1,4 +1,4 @@
-﻿namespace Scheduling.Domain.Periodic.Exceptions;
+﻿namespace Scheduling.Domain.Exceptions;
 
 public class InvalidRangeException : Exception
 {

@@ -1,7 +1,7 @@
-﻿namespace Framework.Core.Time.Clock
+﻿namespace Framework.Domain;
+
+public interface IClock
 {
-    public interface IClock
-    {
-        DateTime Now();
-    }
+    public DateTime Now();
+    public DateOnly DateNow();
 }

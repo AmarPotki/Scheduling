@@ -1,8 +1,9 @@
-﻿using Scheduling.Domain.Periodic.Exceptions;
+﻿using Framework.Domain;
+using Scheduling.Domain.Exceptions;
 
-namespace Scheduling.Domain.Periodic;
+namespace Scheduling.Domain;
 
-public class Range<T> where T : IComparable<T>
+public class Range<T> where T : ValueObject,IComparable<T>
 {
     public Range(T minimum, T maximum)
     {
