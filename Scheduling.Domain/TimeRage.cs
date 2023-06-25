@@ -4,6 +4,10 @@ namespace Scheduling.Domain;
 
 public class TimeRange :ValueObject //Range<TimeOnly>
 {
+    private TimeRange()
+    {
+        
+    }
     public TimeOnly Minimum { get; }
     public TimeOnly Maximum { get; }
 

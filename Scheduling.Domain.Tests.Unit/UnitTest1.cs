@@ -1,40 +1,40 @@
-using FluentAssertions;
-using Scheduling.Domain.Periodic;
+//using FluentAssertions;
+//using Scheduling.Domain.Periodic;
 
-namespace Scheduling.Domain.Tests.Unit
-{
-    public class UnitTest1
-    {
-        [Fact]
-        public void Calculate_slots_between_dates()
-        {
-            var rangeOfPlan = new DateRange
-                (new DateOnly(2023, 1, 1), new DateOnly(2023, 12, 31));
+//namespace Scheduling.Domain.Tests.Unit
+//{
+//    public class UnitTest1
+//    {
+//        [Fact]
+//        public void Calculate_slots_between_dates()
+//        {
+//            var rangeOfPlan = new DateRange
+//                (new DateOnly(2023, 1, 1), new DateOnly(2023, 12, 31));
 
-            var timeOfPlane = new TimeRange
-                (new TimeOnly(2, 0), new TimeOnly(5, 0));
+//            var timeOfPlane = new TimeRange
+//                (new TimeOnly(2, 0), new TimeOnly(5, 0));
 
-            var days = new List<DayOfWeek>
-            {
-                DayOfWeek.Wednesday,
-                DayOfWeek.Friday,
-            };
+//            var days = new List<DayOfWeek>
+//            {
+//                DayOfWeek.Wednesday,
+//                DayOfWeek.Friday,
+//            };
 
-            var plan = new PeriodicPlan
-                (rangeOfPlan, timeOfPlane, days);
+//            var plan = new PeriodicPlan
+//                (rangeOfPlan, timeOfPlane, days);
 
-            var expectedDates = new List<Slot>
-            {
-                new Slot(new DateOnly(2023,5,3),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
-                new Slot(new DateOnly(2023,5,5),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
-                new Slot(new DateOnly(2023,5,10),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
-                new Slot(new DateOnly(2023,5,12),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
-            };
+//            var expectedDates = new List<Slot>
+//            {
+//                new Slot(new DateOnly(2023,5,3),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
+//                new Slot(new DateOnly(2023,5,5),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
+//                new Slot(new DateOnly(2023,5,10),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
+//                new Slot(new DateOnly(2023,5,12),new TimeRange(new TimeOnly(2, 0), new TimeOnly(5, 0))),
+//            };
 
-            //var actualSlots = plan.Calculate
-            //    (new DateRange(new DateOnly(2023, 5, 1), new DateOnly(2023, 5, 15)));
+//            //var actualSlots = plan.Calculate
+//            //    (new DateRange(new DateOnly(2023, 5, 1), new DateOnly(2023, 5, 15)));
 
-           //xpectedDates.Should().BeEquivalentTo(actualSlots);
-        }
-    }
-}
+//           //xpectedDates.Should().BeEquivalentTo(actualSlots);
+//        }
+//    }
+//}

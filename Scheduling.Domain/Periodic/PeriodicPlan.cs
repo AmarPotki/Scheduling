@@ -1,19 +1,19 @@
 ﻿namespace Scheduling.Domain.Periodic;
 
-public class PeriodicPlan
-{
-    public PeriodicPlan
-        (DateRange rangeOfPlan, TimeRange timeOfPlane,
-        List<DayOfWeek> weeklyPlan)
-    {
-        RangeOfPlane = rangeOfPlan;
-        TimeOfPlan = timeOfPlane;
-        WeeklyPlan = weeklyPlan;
-    }
+//public class PeriodicPlan
+//{
+//    public PeriodicPlan
+//        (DateRange rangeOfPlan, TimeRange timeOfPlane,
+//        List<DayOfWeek> weeklyPlan)
+//    {
+//        RangeOfPlane = rangeOfPlan;
+//        TimeOfPlan = timeOfPlane;
+//        WeeklyPlan = weeklyPlan;
+//    }
 
-    public DateRange RangeOfPlane { get; private set; }
-    public TimeRange TimeOfPlan { get; private set; }
-    public List<DayOfWeek> WeeklyPlan { get; private set; }
+    //public DateRange RangeOfPlane { get; private set; }
+    //public TimeRange TimeOfPlan { get; private set; }
+    //public List<DayOfWeek> WeeklyPlan { get; private set; }
 
     //public List<Slot> Calculate(DateRange dateRange)
     //{
@@ -24,4 +24,4 @@ public class PeriodicPlan
     //        .ToList();
     //}
 
-}
+//}

@@ -8,7 +8,10 @@ public class DayOfWeek : Enumeration
     {
 
     }
+    private DayOfWeek()
+    {
 
+    }
     public static DayOfWeek Monday = new DayOfWeek(1, nameof(Monday));
     public static DayOfWeek Tuesday = new DayOfWeek(2, nameof(Tuesday));
     public static DayOfWeek Wednesday = new DayOfWeek(3, nameof(Wednesday));
@@ -22,7 +25,7 @@ public class DayOfWeek : Enumeration
 
     public static DayOfWeek From(int id)
     {
-        var state = List().SingleOrDefault(s => s.Value == id);
+        var state = List().SingleOrDefault(s => s.Id == id);
 
         if (state == null)
         {

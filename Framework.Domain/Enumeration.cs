@@ -65,7 +65,7 @@ public abstract class Enumeration : object, IComparable
         return TryParse
             (item => item.Name == valueOrName, out enumeration) ||
             int.TryParse(valueOrName, out var value) &&
-            TryParse(item => item.Value == value, out enumeration);
+            TryParse(item => item.Id == value, out enumeration);
     }
 
     /// <summary>
@@ -81,7 +81,7 @@ public abstract class Enumeration : object, IComparable
         //	Parse<TEnumeration, int>(value, "nameOrValue", item => item.Value == value);
 
         var matchingItem =
-            ParseByPredicate<TEnumeration>(item => item.Value == value);
+            ParseByPredicate<TEnumeration>(item => item.Id == value);
 
         return matchingItem;
     }
@@ -93,11 +93,11 @@ public abstract class Enumeration : object, IComparable
 
     protected Enumeration(int value, string name) : base()
     {
-        Value = value;
+        Id = value;
         Name = name;
     }
 
-    public int Value { get; }
+    public int Id { get; }
 
     public string Name { get; }
 
@@ -133,7 +133,7 @@ public abstract class Enumeration : object, IComparable
 
         if (GetType() == anotherEnumeration.GetType())
         {
-            return Value == anotherEnumeration.Value;
+            return Id == anotherEnumeration.Id;
         }
 
         return false;
@@ -142,14 +142,14 @@ public abstract class Enumeration : object, IComparable
     public int CompareTo(object otherObject)
     {
         int result =
-            Value.CompareTo((otherObject as Enumeration).Value);
+            Id.CompareTo((otherObject as Enumeration).Id);
 
         return result;
     }
 
     public override int GetHashCode()
     {
-        return Value.GetHashCode();
+        return Id.GetHashCode();
     }
 
     public static bool operator ==(Enumeration left, Enumeration right)

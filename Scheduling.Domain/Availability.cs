@@ -9,6 +9,10 @@ namespace Scheduling.Domain
 {
     public class Availability : Entity<long>
     {
+        private Availability()
+        {
+
+        }
         public Availability(HashSet<DayOfWeek> dayOfWeeks,
             DateRange dateRange,
             TimeRange timeRange, string name, Clinician clinician, Location location, IReadOnlyList<Service> services)
@@ -26,7 +30,7 @@ namespace Scheduling.Domain
         public DateRange DateRange { get; set; }
         public TimeRange TimeRange { get; set; }
         public string Name { get; set; }
-        public long ClinicianId { get; set; }
+        public long? ClinicianId { get; set; }
         public Clinician Clinician { get; set; }
 
 
@@ -34,5 +38,10 @@ namespace Scheduling.Domain
 
         public Location Location { get; set; }
         public IReadOnlyList<Service> Services { get; set; }
+
+        public void UpdateDateRange(DateRange dateRange)
+        {
+            DateRange = dateRange;
+        }
     }
 }

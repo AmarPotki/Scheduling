@@ -4,7 +4,10 @@ namespace Scheduling.Domain;
 
 public class DateRange : ValueObject//Range<DateOnly>
 {
-
+    private DateRange()
+    {
+        
+    }
     public DateRange(DateOnly minimum, DateOnly maximum)
     {
         Minimum = minimum;

@@ -11,7 +11,7 @@ public class DayOfWeekConfiguration : IEntityTypeConfiguration<DayOfWeek>
         builder.ToTable("DayOfWeeks");
 
         builder
-            .Property(p => p.Value)
+            .Property(p => p.Id)
             .ValueGeneratedNever();
 
         builder

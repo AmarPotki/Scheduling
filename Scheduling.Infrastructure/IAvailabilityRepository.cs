@@ -4,5 +4,7 @@ namespace Scheduling.Infrastructure;
 
 public interface IAvailabilityRepository
 {
-    Task AddClientAccount(Availability availability, CancellationToken cancellationToken);
+    Task AddAvailability(Availability availability, CancellationToken cancellationToken);
+    ValueTask<Availability?> GetById(long id, CancellationToken none);
+    Availability Update(Availability current, CancellationToken none);
 }
