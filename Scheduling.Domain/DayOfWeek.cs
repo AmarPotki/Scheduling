@@ -34,4 +34,9 @@ public class DayOfWeek : Enumeration
 
         return state;
     }
+
+    public static implicit operator DayOfWeek(System.DayOfWeek value)
+    {
+        return From((int)value+1);
+    }
 }

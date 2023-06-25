@@ -34,7 +34,7 @@ namespace Scheduling.Infrastructure.Migrations
 
                     b.HasIndex("ServicesId");
 
-                    b.ToTable("Availabilities_Services");
+                    b.ToTable("Availabilities_Services", (string)null);
                 });
 
             modelBuilder.Entity("Scheduling.Domain.Availability", b =>
@@ -120,7 +120,7 @@ namespace Scheduling.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clinician");
+                    b.ToTable("Clinician", (string)null);
                 });
 
             modelBuilder.Entity("Scheduling.Domain.DayOfWeek", b =>
@@ -184,7 +184,7 @@ namespace Scheduling.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Location");
+                    b.ToTable("Location", (string)null);
                 });
 
             modelBuilder.Entity("Scheduling.Domain.Service", b =>
@@ -201,7 +201,7 @@ namespace Scheduling.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Service");
+                    b.ToTable("Service", (string)null);
                 });
 
             modelBuilder.Entity("Availabilities_Services", b =>
@@ -229,7 +229,7 @@ namespace Scheduling.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("LocationId");
 
-                    b.OwnsOne("Scheduling.Domain.DateRange", "DateRange", b1 =>
+                    b.OwnsOne("Scheduling.Domain.Availability.DateRange#Scheduling.Domain.DateRange", "DateRange", b1 =>
                         {
                             b1.Property<long>("AvailabilityId")
                                 .HasColumnType("bigint");
@@ -278,7 +278,7 @@ namespace Scheduling.Infrastructure.Migrations
                                 .HasForeignKey("AvailabilityId");
                         });
 
-                    b.OwnsOne("Scheduling.Domain.TimeRange", "TimeRange", b1 =>
+                    b.OwnsOne("Scheduling.Domain.Availability.TimeRange#Scheduling.Domain.TimeRange", "TimeRange", b1 =>
                         {
                             b1.Property<long>("AvailabilityId")
                                 .HasColumnType("bigint");

@@ -8,31 +8,31 @@ public class DateRange : ValueObject//Range<DateOnly>
     {
         
     }
-    public DateRange(DateOnly minimum, DateOnly maximum)
+    public DateRange(DateOnly beginDate, DateOnly endDate)
     {
-        Minimum = minimum;
-        Maximum = maximum;
+        BeginDate = beginDate;
+        EndDate = endDate;
     }
-    public DateOnly Minimum { get; private set; }
-    public DateOnly Maximum { get; private set; }
+    public DateOnly BeginDate { get; private set; }
+    public DateOnly EndDate { get; private set; }
 
     public bool IsOverlapWith(DateRange range)
     {
-        return Minimum.CompareTo(range.Maximum) < 0 &&
-               range.Minimum.CompareTo(Maximum) < 0;
+        return BeginDate.CompareTo(range.EndDate) < 0 &&
+               range.BeginDate.CompareTo(EndDate) < 0;
     }
     public IEnumerable<DateOnly> EachDay()
     {
-        for (var day = Minimum; day <= Maximum; day = day.AddDays(1))
+        for (var day = BeginDate; day <= EndDate; day = day.AddDays(1))
             yield return day;
     }
 
     public bool IsBetween(DateOnly date) =>
-        Minimum <= date && Maximum >= date;
+        BeginDate <= date && EndDate >= date;
 
     public override IEnumerable<object> GetAtomicValues()
     {
-        yield return Minimum;
-        yield return Maximum;
+        yield return BeginDate;
+        yield return EndDate;
     }
 }

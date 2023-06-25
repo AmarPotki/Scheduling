@@ -43,5 +43,10 @@ namespace Scheduling.Domain
         {
             DateRange = dateRange;
         }
+
+        public bool IsOccurring(DateOnly targetDate)
+        {
+          return  DateRange.IsBetween(targetDate) && DayOfWeeks.Contains(targetDate.DayOfWeek);
+        }
     }
 }

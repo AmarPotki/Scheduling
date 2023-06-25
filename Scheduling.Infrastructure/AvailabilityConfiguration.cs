@@ -34,10 +34,10 @@ public class AvailabilityConfiguration : IEntityTypeConfiguration<Availability>
         builder.OwnsOne(c => c.TimeRange,
             navigationBuilder =>
             {
-                navigationBuilder.Property(r => r.Maximum)
+                navigationBuilder.Property(r => r.StartTime)
                     .HasColumnName("StartTime").HasConversion<TimeOnlyConverter>();
 
-                navigationBuilder.Property(r => r.Minimum)
+                navigationBuilder.Property(r => r.EndTime)
                     .HasColumnName("EndTime").HasConversion<TimeOnlyConverter>();
 
                 navigationBuilder.ToTable($"Availabilities", tbuilder =>
@@ -56,10 +56,10 @@ public class AvailabilityConfiguration : IEntityTypeConfiguration<Availability>
         builder.OwnsOne(c => c.DateRange,
             navigationBuilder =>
             {
-                navigationBuilder.Property(r => r.Maximum)
+                navigationBuilder.Property(r => r.BeginDate)
                     .HasColumnName("StartDate").HasConversion<DateOnlyConverter>(); 
 
-                navigationBuilder.Property(r => r.Minimum)
+                navigationBuilder.Property(r => r.EndDate)
                     .HasColumnName("EndDate").HasConversion<DateOnlyConverter>();
 
                 navigationBuilder.ToTable($"Availabilities", tbuilder =>

@@ -1,4 +1,5 @@
-﻿using Scheduling.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Scheduling.Domain;
 
 namespace Scheduling.Infrastructure;
 
@@ -23,5 +24,10 @@ public class AvailabilityRepository : IAvailabilityRepository
     {
         var entry= _dataContext.Set<Availability>().Update(current);
         return entry.Entity;
+    }
+
+    public Task<List<Availability>> GetByDates(DateOnly from, DateOnly to)
+    {
+      return  _dataContext.Set<Availability>().Where(c => c.DateRange.BeginDate >= from || c.DateRange.EndDate <= to).ToListAsync();
     }
 }

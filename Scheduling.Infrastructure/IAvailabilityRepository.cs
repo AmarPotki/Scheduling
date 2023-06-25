@@ -7,4 +7,5 @@ public interface IAvailabilityRepository
     Task AddAvailability(Availability availability, CancellationToken cancellationToken);
     ValueTask<Availability?> GetById(long id, CancellationToken none);
     Availability Update(Availability current, CancellationToken none);
+    Task<List<Availability>> GetByDates(DateOnly from, DateOnly to);
 }
