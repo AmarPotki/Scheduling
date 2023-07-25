@@ -1,17 +1,23 @@
-﻿using Framework.Domain;
+﻿using ErrorOr;
+using Framework.Domain;
 
 namespace Scheduling.Domain;
-
-public class DateRange : ValueObject//Range<DateOnly>
+public class DateRange : ValueObject
 {
     private DateRange()
     {
-        
+
     }
-    public DateRange(DateOnly beginDate, DateOnly endDate)
+    private DateRange(DateOnly beginDate, DateOnly endDate)
     {
         BeginDate = beginDate;
         EndDate = endDate;
+    }
+
+    public static ErrorOr<DateRange> Create(DateOnly beginDate, DateOnly endDate)
+    {
+        if (beginDate > endDate) return Error.Validation("Invalid Date");
+        return new DateRange(beginDate, endDate);
     }
     public DateOnly BeginDate { get; private set; }
     public DateOnly EndDate { get; private set; }

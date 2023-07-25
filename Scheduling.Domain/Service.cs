@@ -1,14 +1,25 @@
-﻿using Framework.Domain;
+﻿using ErrorOr;
+using Framework.Domain;
 
 namespace Scheduling.Domain;
 
-public class Service : Entity<long>
+public class Service : ValueObject
 {
-    public Service(string name)
+    private Service(long id)
     {
-        Name = name;
+        Id = id;
     }
 
-    public string Name { get;private set; }
-    public IReadOnlyCollection<Availability> Availabilities { get; set; }
+    public static ErrorOr<Service> Create(long id)
+    {
+        //    if (id <= 0)
+        //        return Errors.General.Required("LocationId");
+        return new Service(id);
+    }
+    public long Id { get; set; }
+
+    public override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Id;
+    }
 }

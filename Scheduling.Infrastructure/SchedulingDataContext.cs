@@ -16,23 +16,24 @@ namespace Scheduling.Infrastructure
         {
             modelBuilder.ApplyConfigurationsFromAssembly
                 (Assembly.GetExecutingAssembly(), x => x.Namespace == typeof(AvailabilityConfiguration).Namespace);
-            modelBuilder.Entity<Availability>().ToTable(
-                "Availabilities",
-                b =>
-                {
-                    b.IsTemporal(
-                        t =>
-                        {
-                            t.HasPeriodStart("ValidFrom");
-                            t.HasPeriodEnd("ValidTo");
-                            t.UseHistoryTable("AvailabilityHistory");
-                        });
-                    b.Property("ValidFrom").HasColumnName("ValidFrom");
-                    b.Property("ValidTo").HasColumnName("ValidTo");
-                })
-                .HasMany(e => e.Services)
-                .WithMany(e => e.Availabilities)
-                .UsingEntity("Availabilities_Services");
+            //modelBuilder.Entity<Availability>()
+            //   // .ToTable(
+            //   // "Availabilities",
+            //   // b =>
+            //  //  {
+            //        //b.IsTemporal(
+            //        //    t =>
+            //        //    {
+            //        //        t.HasPeriodStart("ValidFrom");
+            //        //        t.HasPeriodEnd("ValidTo");
+            //        //        t.UseHistoryTable("AvailabilityHistory");
+            //        //    });
+            //        //b.Property("ValidFrom").HasColumnName("ValidFrom");
+            //        //b.Property("ValidTo").HasColumnName("ValidTo");
+            //  //  })
+            //    .HasMany(e => e.Services)
+            //    .WithMany(e => e.Availabilities)
+            //    .UsingEntity("Availabilities_Services");
 
         }
     }

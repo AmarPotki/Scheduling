@@ -1,11 +1,25 @@
-﻿using Framework.Domain;
+﻿using ErrorOr;
+using Framework.Domain;
 
 namespace Scheduling.Domain;
 
-public class Clinician : Entity<long>
+public class Clinician : ValueObject
 {
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string  Email { get; private set; }
+    private Clinician(long id)
+    {
+        Id = id;
+    }
 
+    public static ErrorOr<Clinician> Create(long id)
+    {
+        //if (id <= 0)
+        //    return Errors.General.Required("ClinicianId");
+        return new Clinician(id);
+    }
+    public long Id { get; private set; }
+
+    public override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Id;
+    }
 }

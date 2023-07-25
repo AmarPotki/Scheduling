@@ -12,7 +12,7 @@ using Scheduling.Infrastructure;
 namespace Scheduling.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedulingDataContext))]
-    [Migration("20230625074511_init")]
+    [Migration("20230626082500_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -56,6 +56,10 @@ namespace Scheduling.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExcludedDays")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long?>("LocationId")
                         .HasColumnType("bigint")
                         .HasColumnName("LocationId");
@@ -64,41 +68,13 @@ namespace Scheduling.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ValidFrom")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ValidFrom");
-
-                    b.Property<DateTime>("ValidTo")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ValidTo");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClinicianId");
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Availabilities", null, t =>
-                        {
-                            t.Property("ValidFrom")
-                                .HasColumnName("ValidFrom");
-
-                            t.Property("ValidTo")
-                                .HasColumnName("ValidTo");
-                        });
-
-                    b.ToTable(tb => tb.IsTemporal(ttb =>
-                            {
-                                ttb.UseHistoryTable("AvailabilityHistory");
-                                ttb
-                                    .HasPeriodStart("ValidFrom")
-                                    .HasColumnName("ValidFrom");
-                                ttb
-                                    .HasPeriodEnd("ValidTo")
-                                    .HasColumnName("ValidTo");
-                            }));
+                    b.ToTable("ClientAccounts", (string)null);
                 });
 
             modelBuilder.Entity("Scheduling.Domain.Clinician", b =>
@@ -237,45 +213,17 @@ namespace Scheduling.Infrastructure.Migrations
                             b1.Property<long>("AvailabilityId")
                                 .HasColumnType("bigint");
 
-                            b1.Property<DateTime>("Maximum")
+                            b1.Property<DateTime>("BeginDate")
                                 .HasColumnType("datetime2")
                                 .HasColumnName("StartDate");
 
-                            b1.Property<DateTime>("Minimum")
+                            b1.Property<DateTime>("EndDate")
                                 .HasColumnType("datetime2")
                                 .HasColumnName("EndDate");
 
-                            b1.Property<DateTime>("ValidFrom")
-                                .ValueGeneratedOnAddOrUpdate()
-                                .HasColumnType("datetime2")
-                                .HasColumnName("ValidFrom");
-
-                            b1.Property<DateTime>("ValidTo")
-                                .ValueGeneratedOnAddOrUpdate()
-                                .HasColumnType("datetime2")
-                                .HasColumnName("ValidTo");
-
                             b1.HasKey("AvailabilityId");
 
-                            b1.ToTable("Availabilities", null, t =>
-                                {
-                                    t.Property("ValidFrom")
-                                        .HasColumnName("ValidFrom");
-
-                                    t.Property("ValidTo")
-                                        .HasColumnName("ValidTo");
-                                });
-
-                            b1.ToTable(tb => tb.IsTemporal(ttb =>
-                                    {
-                                        ttb.UseHistoryTable("AvailabilityHistory");
-                                        ttb
-                                            .HasPeriodStart("ValidFrom")
-                                            .HasColumnName("ValidFrom");
-                                        ttb
-                                            .HasPeriodEnd("ValidTo")
-                                            .HasColumnName("ValidTo");
-                                    }));
+                            b1.ToTable("ClientAccounts");
 
                             b1.WithOwner()
                                 .HasForeignKey("AvailabilityId");
@@ -286,45 +234,17 @@ namespace Scheduling.Infrastructure.Migrations
                             b1.Property<long>("AvailabilityId")
                                 .HasColumnType("bigint");
 
-                            b1.Property<TimeSpan>("Maximum")
-                                .HasColumnType("time")
-                                .HasColumnName("StartTime");
-
-                            b1.Property<TimeSpan>("Minimum")
+                            b1.Property<TimeSpan>("EndTime")
                                 .HasColumnType("time")
                                 .HasColumnName("EndTime");
 
-                            b1.Property<DateTime>("ValidFrom")
-                                .ValueGeneratedOnAddOrUpdate()
-                                .HasColumnType("datetime2")
-                                .HasColumnName("ValidFrom");
-
-                            b1.Property<DateTime>("ValidTo")
-                                .ValueGeneratedOnAddOrUpdate()
-                                .HasColumnType("datetime2")
-                                .HasColumnName("ValidTo");
+                            b1.Property<TimeSpan>("StartTime")
+                                .HasColumnType("time")
+                                .HasColumnName("StartTime");
 
                             b1.HasKey("AvailabilityId");
 
-                            b1.ToTable("Availabilities", null, t =>
-                                {
-                                    t.Property("ValidFrom")
-                                        .HasColumnName("ValidFrom");
-
-                                    t.Property("ValidTo")
-                                        .HasColumnName("ValidTo");
-                                });
-
-                            b1.ToTable(tb => tb.IsTemporal(ttb =>
-                                    {
-                                        ttb.UseHistoryTable("AvailabilityHistory");
-                                        ttb
-                                            .HasPeriodStart("ValidFrom")
-                                            .HasColumnName("ValidFrom");
-                                        ttb
-                                            .HasPeriodEnd("ValidTo")
-                                            .HasColumnName("ValidTo");
-                                    }));
+                            b1.ToTable("ClientAccounts");
 
                             b1.WithOwner()
                                 .HasForeignKey("AvailabilityId");

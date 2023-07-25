@@ -37,6 +37,6 @@ public class DayOfWeek : Enumeration
 
     public static implicit operator DayOfWeek(System.DayOfWeek value)
     {
-        return From((int)value+1);
+        return value == System.DayOfWeek.Sunday ? From(7) : From((int)value);
     }
 }
